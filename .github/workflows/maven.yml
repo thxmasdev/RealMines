@@ -26,8 +26,12 @@ jobs:
         # Dynamically find the JAR
       - id: find_jar
         run: |
-          JAR_FILE=$(find realmines-plugin/target -maxdepth 1 -name "*.jar" ! -name "*original*.jar" | head -n 1)
-          echo "JAR found: $JAR_FILE"
+          JAR_FILE=$(find realmines-plugin/target -maxdepth 1 -name "*.jar" | head -n 1)
+          if [ -z "$JAR_FILE" ]; then
+            echo "Error: no JAR found in target folder!"
+            exit 1
+          fi
+          echo "Found JAR: $JAR_FILE"
           echo "jar_path=$JAR_FILE" >> $GITHUB_OUTPUT
 
       - uses: actions/upload-artifact@v4
