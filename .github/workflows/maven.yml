@@ -23,7 +23,13 @@ jobs:
 
       - run: mvn clean package
 
-      # Upload as artifact (optional, for workflow access)
+        # Dynamically find the JAR
+      - id: find_jar
+        run: |
+          JAR_FILE=$(find realmines-plugin/target -maxdepth 1 -name "*.jar" ! -name "*original*.jar" | head -n 1)
+          echo "JAR found: $JAR_FILE"
+          echo "jar_path=$JAR_FILE" >> $GITHUB_OUTPUT
+
       - uses: actions/upload-artifact@v4
         with:
           name: 'RealMines (Dev Build)'
@@ -50,6 +56,6 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.gh_release.outputs.upload_url }}
-          asset_path: realmines-plugin/target/realmines*.jar
+          asset_path: ${{ needs.build.outputs.jar_path }}
           asset_name: realmines-${{ github.ref_name }}.jar
           asset_content_type: application/java-archive
