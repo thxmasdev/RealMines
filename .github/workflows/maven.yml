@@ -23,6 +23,12 @@ jobs:
 
       - run: mvn clean package
 
+      # Extract version from pom.xml
+      - id: get_version
+        run: |
+          VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
       - uses: actions/upload-artifact@v4
         with:
           name: RealMines-${{ steps.get_version.outputs.version }}
