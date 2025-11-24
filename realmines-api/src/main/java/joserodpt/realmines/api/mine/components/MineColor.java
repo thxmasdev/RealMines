@@ -14,7 +14,7 @@ package joserodpt.realmines.api.mine.components;
  */
 
 import joserodpt.realmines.api.utils.Items;
-import joserodpt.realmines.api.utils.SkullCreator;
+import joserodpt.realmines.api.utils.skulls.SkullCreator;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
