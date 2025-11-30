@@ -1,4 +1,4 @@
-# RealMines en Folia 1.21.x (resumen humano)
+# RealMines en Folia 1.21.x
 
 Llevé el plugin a Folia 1.21.x para que todo lo que toca bloques o jugadores se ejecute en el hilo correcto. Dejamos atrás el viejo `BukkitScheduler` y usamos los planificadores de Folia/Paper:
 
