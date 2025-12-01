@@ -28,11 +28,7 @@ import org.bukkit.World;
 public class WorldEditUtils {
 
     public static void setBlocks(Region region, Pattern pattern) {
-        BlockVector3 min = region.getMinimumPoint();
-        org.bukkit.World bw = BukkitAdapter.adapt(region.getWorld());
-        org.bukkit.Location anchor = new org.bukkit.Location(bw, min.getX(), min.getY(), min.getZ());
-
-        Bukkit.getRegionScheduler().execute(RealMinesAPI.getInstance().getPlugin(), anchor, () -> {
+        Bukkit.getAsyncScheduler().runNow(RealMinesAPI.getInstance().getPlugin(), t -> {
             try (EditSession editSession = WorldEdit.getInstance().newEditSessionBuilder()
                     .world(region.getWorld())
                     .build()) {

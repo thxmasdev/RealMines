@@ -52,7 +52,7 @@ public class PlayerInput implements Listener {
         this.clearInput = clearInput;
         this.taskId = p.getScheduler().runAtFixedRate(RealMinesAPI.getInstance().getPlugin(), (ScheduledTask t) -> {
             p.sendTitle(PlayerInput.this.texts.get(0), PlayerInput.this.texts.get(1), 0, 21, 0);
-        }, null, 0, 20);
+        }, null, 1, 20);
 
         this.register();
     }

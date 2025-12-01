@@ -129,7 +129,7 @@ public class SchematicMine extends RMine {
 
     @Override
     public void fillContent() {
-        org.bukkit.Bukkit.getRegionScheduler().execute(RealMinesAPI.getInstance().getPlugin(), this.getPOS1(), () -> {
+        org.bukkit.Bukkit.getAsyncScheduler().runNow(RealMinesAPI.getInstance().getPlugin(), t -> {
             this.placeSchematic(this.pasteClipboard, this.getPOS1());
             super.fillFaces();
         });
